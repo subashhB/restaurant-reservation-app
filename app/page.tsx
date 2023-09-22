@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "./page.module.css";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,9 +11,9 @@ export default function Home() {
       <main className="max-w-screen-2xl m-auto bg-white">
         {/* Navbar */}
         <nav className="bg-white p-2 flex justify-between">
-          <a href="" className="text-bold text-gray-700 text-2xl">
+          <Link href="/" className="text-bold text-gray-700 text-2xl">
             OpenTable
-          </a>
+          </Link>
           <div>
             <div className="flex">
               <button className="bg-blue-400 text-white border p-1 px-4 rounded mr-3">
@@ -45,30 +46,34 @@ export default function Home() {
             </div>
           </div>
           {/* CARD */}
-          <div className="py-3 px-36 mt-10 flex flex-wrap">
-            <div className="w-64 h-72 m-3 rounded overflow-hidden border cursor-pointer">
-              <img
-                src="https://img.freepik.com/free-photo/top-view-table-full-delicious-food-composition_23-2149141353.jpg"
-                alt="Card Image"
-                className="w-full h-36"
-              />
-              <div className="p-1">
-                <h3 className="font-bold text-2xl mb-2 text-black">
-                  Food Name
-                </h3>
-                <div className="flex items-start">
-                  <div className="flex mb-2 text-black">*****</div>
-                  <p className="ml-2 text-black">77 reviews</p>
+          <Link href={"/restaurant/restaurantName"}>
+            <div className="py-3 px-36 mt-10 flex flex-wrap">
+              <div className="w-64 h-72 m-3 rounded overflow-hidden border cursor-pointer">
+                <img
+                  src="https://img.freepik.com/free-photo/top-view-table-full-delicious-food-composition_23-2149141353.jpg"
+                  alt="Card Image"
+                  className="w-full h-36"
+                />
+                <div className="p-1">
+                  <h3 className="font-bold text-2xl mb-2 text-black">
+                    Food Name
+                  </h3>
+                  <div className="flex items-start">
+                    <div className="flex mb-2 text-black">*****</div>
+                    <p className="ml-2 text-black">77 reviews</p>
+                  </div>
+                  <div className="flex text-reg font-light capitalize">
+                    <p className="mr-3">Mexican</p>
+                    <p className="mr-3">$$$</p>
+                    <p>Toroto</p>
+                  </div>
+                  <p className="text-reg mt-1 font-bold">
+                    Booked 3 times today
+                  </p>
                 </div>
-                <div className="flex text-reg font-light capitalize">
-                  <p className="mr-3">Mexican</p>
-                  <p className="mr-3">$$$</p>
-                  <p>Toroto</p>
-                </div>
-                <p className="text-reg mt-1 font-bold">Booked 3 times today</p>
               </div>
             </div>
-          </div>
+          </Link>
         </main>
       </main>
     </main>
