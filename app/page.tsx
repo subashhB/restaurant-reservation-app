@@ -49,7 +49,7 @@ export default function Home() {
               <div className="mt-4 pb-1 mb-1">
                 <h1 className="font-bold text-4xl">Menu</h1>
               </div>
-              \
+
               <div className="flex flex-wrap justify-between">
                 {/* MENU CARD */}
                 <div className="border rounded p-3 w-[49%] mb-3">
