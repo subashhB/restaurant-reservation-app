@@ -10,7 +10,7 @@ export default function Home() {
       <main className="max-w-screen-2xl m-auto bg-white">
         {/* Navbar */}
         <nav className="bg-white p-2 flex justify-between">
-          <a href="" className="text-bold text-gray-700 text-2xl">
+          <a href="" className="font-bold text-gray-700 text-2xl">
             OpenTable
           </a>
           <div>
@@ -24,45 +24,130 @@ export default function Home() {
             </div>
           </div>
         </nav>
-        {/* HEADER */}
-        <div className="h-96 overflow-hidden">
-          <div className="bg-center bg-gradient-to-r from-[#0f1f47] to-[#5f6984] h-full flex justify-center items-center">
-            <h1 className="text-7xl text-white capitalize text-shadow text-center">
-              Restaurant Name
-            </h1>
+        {/* Header */}
+        <div className="bg-gradient-to-r from-[#0f1f47] to-[#5f6984] ">
+          {/* Search Bar */}
+          <div className="overflow-hidden rounded text-left text-lg py-3 m-auto flex justify-center">
+            <input
+              type="text"
+              className=" bg-white text-black rounded  mr-3 w-[450px] p-2 "
+              placeholder="State, City or Town"
+            />
+            <button className="bg-red-600 px-9 py-2 rounded text-white">
+              Let&apos;s Go
+            </button>
           </div>
         </div>
-        {/* Description Portion */}
-        <div className="flex mx-auto w-2/3 justify-between items-start 0 -mt-11">
-          <div className="bg-white w-[70%] rounded p-3 shadow ">
-            {/* Restaurant Navbar */}
-            <nav className="flex text-reg border-b pb-2">
-              <a href="" className="mr-7">
-                Overview
-              </a>
-              <a href="" className="mr-7">
-                Menu
-              </a>
-            </nav>
-            {/* Menu */}
-            <main className="bg-white mt-5">
-              <div className="mt-4 pb-1 mb-1">
-                <h1 className="font-bold text-4xl">Menu</h1>
+        <div className="flex py-4 m-auto w-2/3 justify-between items-start">
+          {/* Search Sidebar */}
+          <div className="w-1/5">
+            <div className="border-b pb-4">
+              <h1 className="mb-2 font-bold">Region</h1>
+              <p className="text-light text-reg">City Name</p>
+              <p className="text-light text-reg">City Name</p>
+              <p className="text-light text-reg">City Name</p>
+              <p className="text-light text-reg">City Name</p>
+              <p className="text-light text-reg">City Name</p>
+              <p className="text-light text-reg">City Name</p>
+            </div>
+            <div className="border-b pb-4 mt-3">
+              <h1 className="mb-2 font-bold">Cuisine</h1>
+              <p className="text-light text-reg">Mexican</p>
+              <p className="text-light text-reg">Italian</p>
+              <p className="text-light text-reg">Japanese</p>
+              <p className="text-light text-reg">Chinese</p>
+              <p className="text-light text-reg">Thai</p>
+              <p className="text-light text-reg">Continental</p>
+            </div>
+            <div className="mt-3 pb-4">
+              <h1 className="mb-2">Price</h1>
+              <div className="flex">
+                <button className="border w-full text-reg font-light rounded-l p-2">
+                  $
+                </button>
+                <button className="border-t border-b border-r w-full text-reg font-light p-2">
+                  $$
+                </button>
+                <button className="border-r border-t border-b w-full text-reg font-light rounded-r p-2">
+                  $$$
+                </button>
               </div>
-
-              <div className="flex flex-wrap justify-between">
-                {/* MENU CARD */}
-                <div className="border rounded p-3 w-[49%] mb-3">
-                  <h3 className="font-bold text-lg">Menu Item</h3>
-                  <p className="font-light mt-1 text-sm">
-                    Menu Desciption: Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Quasi maiores facere soluta obcaecati
-                    consequatur amet id quibusdam debitis!
-                  </p>
-                  <p className="mt-7">$80.00</p>
+            </div>
+          </div>
+          <div className="w-5/6">
+            {/* Restaurant Card */}
+            <div className="border-b flex pb-5">
+              <img
+                className="w-44 rounded"
+                src="https://img.freepik.com/free-photo/top-view-table-full-delicious-food-composition_23-2149141353.jpg"
+                alt=""
+              />
+              <div className="pl-5">
+                <h2 className="text-3xl">Restaurant Name</h2>
+                <div className="flex items-start">
+                  <div className="flex mb-2">*****</div>
+                  <div className="ml-2 text-sm">Awesome</div>
+                </div>
+                <div className="mb-9">
+                  <div className="font-light flex text-reg">
+                    <div className="mr-4">$$$</div>
+                    <div className="mr-4">Mexican</div>
+                    <div className="mr-4">Restaurant Location</div>
+                  </div>
+                </div>
+                <div className="text-red-600">
+                  <a href="">View More Information</a>
                 </div>
               </div>
-            </main>
+            </div>
+            <div className="border-b flex pb-5">
+              <img
+                className="w-44 rounded"
+                src="https://img.freepik.com/free-photo/top-view-table-full-delicious-food-composition_23-2149141353.jpg"
+                alt=""
+              />
+              <div className="pl-5">
+                <h2 className="text-3xl">Restaurant Name</h2>
+                <div className="flex items-start">
+                  <div className="flex mb-2">*****</div>
+                  <div className="ml-2 text-sm">Awesome</div>
+                </div>
+                <div className="mb-9">
+                  <div className="font-light flex text-reg">
+                    <div className="mr-4">$$$</div>
+                    <div className="mr-4">Mexican</div>
+                    <div className="mr-4">Restaurant Location</div>
+                  </div>
+                </div>
+                <div className="text-red-600">
+                  <a href="">View More Information</a>
+                </div>
+              </div>
+            </div>
+            <div className="border-b flex pb-5">
+              <img
+                className="w-44 rounded"
+                src="https://img.freepik.com/free-photo/top-view-table-full-delicious-food-composition_23-2149141353.jpg"
+                alt=""
+              />
+              <div className="pl-5">
+                <h2 className="text-3xl">Restaurant Name</h2>
+                <div className="flex items-start">
+                  <div className="flex mb-2">*****</div>
+                  <div className="ml-2 text-sm">Awesome</div>
+                </div>
+                <div className="mb-9">
+                  <div className="font-light flex text-reg">
+                    <div className="mr-4">$$$</div>
+                    <div className="mr-4">Mexican</div>
+                    <div className="mr-4">Restaurant Location</div>
+                  </div>
+                </div>
+                <div className="text-red-600">
+                  <a href="">View More Information</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </main>
