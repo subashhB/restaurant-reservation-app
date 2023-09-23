@@ -1,26 +1,12 @@
 import Link from "next/link";
 import React from "react";
+import Navbar from "../../components/Navbar";
 
 const Reservation = () => {
   return (
     <main className="bg-gray-100 min-h-screen w-screen text-black">
       <main className="max-w-screen-2xl m-auto bg-white">
-        {/* Navbar */}
-        <nav className="bg-white p-2 flex justify-between">
-          <Link href="/" className="font-bold text-gray-700 text-2xl">
-            OpenTable
-          </Link>
-          <div>
-            <div className="flex">
-              <button className="bg-blue-400 text-white border p-1 px-4 rounded mr-3">
-                Sign In
-              </button>
-              <button className="border p-2 px-4 rounded text-black ">
-                Sign Up
-              </button>
-            </div>
-          </div>
-        </nav>
+        <Navbar />
         <div className="border-t h-screen ">
           <div className="py-9 w-3/5 m-auto">
             <div>
