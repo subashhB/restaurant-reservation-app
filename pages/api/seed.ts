@@ -198,7 +198,7 @@ export default async function handler(
         cuisine_id: indianCuisineId,
       },
       {
-        name: "Kamasutra Indian",
+        name: "Food Indian",
         main_image:
           "https://resizer.otstatic.com/v2/photos/xlarge/1/25602522.jpg",
         price: PRICE.CHEAP,

@@ -1,10 +1,16 @@
-import { Inter } from "next/font/google";
+import { PrismaClient } from "@prisma/client";
 import Header from "./components/Header";
 import RestaurantCard from "./components/RestaurantCard";
 
-const inter = Inter({ subsets: ["latin"] });
+const prisma = new PrismaClient();
 
-export default function Home() {
+const fetchRestaurants = async () => {
+  return prisma.restaurant.findMany();
+};
+
+export default async function Home() {
+  const restaurants = await fetchRestaurants();
+  console.log(restaurants);
   return (
     <main>
       <Header />
