@@ -61,6 +61,7 @@ const fetchRestaurantsByCity = async (searchParams: SearchParams) => {
     main_image: true,
     slug: true,
     location: true,
+    reviews: true,
     cuisine: true,
     price: true,
   };
