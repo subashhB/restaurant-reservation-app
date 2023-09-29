@@ -1,5 +1,6 @@
 import { PRICE } from "@prisma/client";
 import Link from "next/link";
+import { SearchParams } from "../page";
 
 interface SeachBarProps {
   locations: {
@@ -8,7 +9,7 @@ interface SeachBarProps {
   cuisines: {
     name: string;
   }[];
-  searchParams: { city?: string; cuisine?: string; price?: PRICE };
+  searchParams: SearchParams;
 }
 
 const SearchSideBar = async ({
@@ -25,13 +26,13 @@ const SearchSideBar = async ({
     },
     {
       id: 2,
-      price: PRICE.CHEAP,
+      price: PRICE.REGULAR,
       label: "$$",
       className: "border-t border-b border-r w-full text-reg font-light p-2",
     },
     {
       id: 3,
-      price: PRICE.CHEAP,
+      price: PRICE.EXPENSIVE,
       label: "$$$",
       className:
         "border-r border-t border-b w-full text-reg font-light rounded-r p-2",
