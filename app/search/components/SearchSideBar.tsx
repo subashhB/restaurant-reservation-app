@@ -1,23 +1,30 @@
-const SearchSideBar = () => {
+interface SeachBarProps {
+  locations: {
+    name: string;
+  }[];
+  cuisines: {
+    name: string;
+  }[];
+}
+
+const SearchSideBar = async ({ locations, cuisines }: SeachBarProps) => {
   return (
     <div className="w-1/5">
       <div className="border-b pb-4">
         <h1 className="mb-2 font-bold">Region</h1>
-        <p className="text-light text-reg">City Name</p>
-        <p className="text-light text-reg">City Name</p>
-        <p className="text-light text-reg">City Name</p>
-        <p className="text-light text-reg">City Name</p>
-        <p className="text-light text-reg">City Name</p>
-        <p className="text-light text-reg">City Name</p>
+        {locations.map((location, index) => (
+          <p key={index} className="text-light text-reg">
+            {location.name}
+          </p>
+        ))}
       </div>
       <div className="border-b pb-4 mt-3">
         <h1 className="mb-2 font-bold">Cuisine</h1>
-        <p className="text-light text-reg">Mexican</p>
-        <p className="text-light text-reg">Italian</p>
-        <p className="text-light text-reg">Japanese</p>
-        <p className="text-light text-reg">Chinese</p>
-        <p className="text-light text-reg">Thai</p>
-        <p className="text-light text-reg">Continental</p>
+        {cuisines.map((cuisine, index) => (
+          <p key={index} className="text-light text-reg">
+            {cuisine.name}
+          </p>
+        ))}
       </div>
       <div className="mt-3 pb-4">
         <h1 className="mb-2">Price</h1>

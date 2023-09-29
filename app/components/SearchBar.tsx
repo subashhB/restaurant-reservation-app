@@ -20,7 +20,8 @@ const SearchBar = () => {
           if (location === "") {
             return;
           }
-          router.push("/search");
+          router.push(`/search?city=${location}`);
+          setLocation("");
         }}
       >
         Let&apos;s Go
