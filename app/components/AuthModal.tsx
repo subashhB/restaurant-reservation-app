@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import AuthModalInputs from "./AuthModalInputs";
 
 const style = {
@@ -29,8 +29,21 @@ export default function AuthModal({ isSignIn }: AuthModalProps) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const [inputs, setInputs] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    city: "",
+    password: "",
+  });
+
   const renderContent = (signInContent: string, signUpContent: string) => {
     return isSignIn ? signInContent : signUpContent;
+  };
+
+  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>): void => {
+    setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
 
   return (
@@ -64,7 +77,11 @@ export default function AuthModal({ isSignIn }: AuthModalProps) {
                   "Create Your OpenTable Account"
                 )}
               </h2>
-              <AuthModalInputs />
+              <AuthModalInputs
+                isSignIn={isSignIn}
+                inputs={inputs}
+                handleChangeInput={handleChangeInput}
+              />
               <button className="uppercase bg-red-600 w-full text-white p-3 text-sm rounded mb-5 disabled:bg-gray-400 ">
                 {renderContent("Sign In", "Create Account")}
               </button>
