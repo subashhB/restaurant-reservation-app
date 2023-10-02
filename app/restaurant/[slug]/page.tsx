@@ -33,7 +33,7 @@ const fetchResturantBySlug = async (slug: string): Promise<Restaurant> => {
     },
   });
   if (!restuarant) {
-    throw new Error("Restaurant is not defined.");
+    throw new Error("Cannot find the restaurant.");
   }
   return restuarant;
 };
