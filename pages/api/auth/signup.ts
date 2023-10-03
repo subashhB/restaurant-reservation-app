@@ -65,6 +65,17 @@ export default async function handler(
         .json({ errorMessage: "E-mail already registered." });
     }
     const hashedPassword = await bcrypt.hash(password, 10);
-    return res.status(200).json({ message: hashedPassword });
+
+    const user = await prisma.user.create({
+      data: {
+        first_name: firstName,
+        last_name: lastName,
+        password: hashedPassword,
+        email,
+        city,
+        phone,
+      },
+    });
+    return res.status(200).json({ message: user });
   }
 }
