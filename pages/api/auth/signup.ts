@@ -88,6 +88,7 @@ export default async function handler(
       .setExpirationTime("24h")
       .sign(secret);
 
-    return res.status(200).json({ message: token });
+    return res.status(200).json({ token });
   }
+  return res.status(404).json({ message: "Unknown end point" });
 }
