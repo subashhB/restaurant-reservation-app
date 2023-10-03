@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { ChangeEvent, useEffect, useState } from "react";
 import AuthModalInputs from "./AuthModalInputs";
+import useAuth from "../../hooks/useAuth";
 
 const style = {
   position: "absolute" as "absolute",
@@ -28,6 +29,8 @@ export default function AuthModal({ isSignIn }: AuthModalProps) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const { signIn, signUp } = useAuth();
 
   const [inputs, setInputs] = useState({
     firstName: "",
@@ -66,6 +69,12 @@ export default function AuthModal({ isSignIn }: AuthModalProps) {
 
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>): void => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
+  };
+
+  const handleClick = () => {
+    if (isSignIn) {
+      signIn({ email: inputs.email, password: inputs.password });
+    }
   };
 
   return (
@@ -107,6 +116,7 @@ export default function AuthModal({ isSignIn }: AuthModalProps) {
               <button
                 className="uppercase bg-red-600 w-full text-white p-3 text-sm rounded mb-5 disabled:bg-gray-400 "
                 disabled={disabled}
+                onClick={handleClick}
               >
                 {renderContent("Sign In", "Create Account")}
               </button>
