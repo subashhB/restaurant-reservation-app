@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import validator from "validator";
+import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
 
@@ -51,15 +52,19 @@ export default async function handler(
     if (errors.length) {
       res.status(400).json({ errorMessage: errors[0] });
     }
-    const userWithEmail = await prisma.user.findMany({
+    const userWithEmail = await prisma.user.findUnique({
       where: {
         email,
       },
     });
-    if (userWithEmail)
+    console.log(userWithEmail);
+
+    if (userWithEmail) {
       return res
         .status(400)
         .json({ errorMessage: "E-mail already registered." });
-    return res.status(200).json({ message: "hello world" });
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);
+    return res.status(200).json({ message: hashedPassword });
   }
 }
