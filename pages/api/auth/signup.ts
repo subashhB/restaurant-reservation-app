@@ -1,7 +1,13 @@
+import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import validator from "validator";
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+const prisma = new PrismaClient();
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method === "POST") {
     const { firstName, lastName, email, phone, city, password } = req.body;
     const errors: string[] = [];
@@ -45,6 +51,15 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     if (errors.length) {
       res.status(400).json({ errorMessage: errors[0] });
     }
+    const userWithEmail = await prisma.user.findMany({
+      where: {
+        email,
+      },
+    });
+    if (userWithEmail)
+      return res
+        .status(400)
+        .json({ errorMessage: "E-mail already registered." });
     return res.status(200).json({ message: "hello world" });
   }
 }
