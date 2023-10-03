@@ -73,7 +73,7 @@ const AuthModalInputs = ({
       )}
       <div className="my-3 flex-justify-between text-sm">
         <input
-          type="text"
+          type="password"
           className="border rounded p-2 py-3 w-[98%] bg-white text-black"
           placeholder="Password"
           value={inputs.password}

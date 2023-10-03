@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import AuthModalInputs from "./AuthModalInputs";
 
 const style = {
@@ -37,6 +37,28 @@ export default function AuthModal({ isSignIn }: AuthModalProps) {
     city: "",
     password: "",
   });
+
+  const [disabled, setDisabled] = useState(true);
+
+  useEffect(() => {
+    if (isSignIn) {
+      if (inputs.email && inputs.password) {
+        return setDisabled(false);
+      }
+    } else {
+      if (
+        inputs.firstName &&
+        inputs.lastName &&
+        inputs.email &&
+        inputs.city &&
+        inputs.password &&
+        inputs.phone
+      ) {
+        return setDisabled(false);
+      }
+    }
+    setDisabled(true);
+  }, [inputs, isSignIn]);
 
   const renderContent = (signInContent: string, signUpContent: string) => {
     return isSignIn ? signInContent : signUpContent;
@@ -82,7 +104,10 @@ export default function AuthModal({ isSignIn }: AuthModalProps) {
                 inputs={inputs}
                 handleChangeInput={handleChangeInput}
               />
-              <button className="uppercase bg-red-600 w-full text-white p-3 text-sm rounded mb-5 disabled:bg-gray-400 ">
+              <button
+                className="uppercase bg-red-600 w-full text-white p-3 text-sm rounded mb-5 disabled:bg-gray-400 "
+                disabled={disabled}
+              >
                 {renderContent("Sign In", "Create Account")}
               </button>
             </div>
