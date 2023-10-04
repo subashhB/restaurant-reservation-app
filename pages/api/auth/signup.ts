@@ -1,3 +1,4 @@
+import { setCookie } from "cookies-next";
 import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import validator from "validator";
@@ -88,7 +89,15 @@ export default async function handler(
       .setExpirationTime("24h")
       .sign(secret);
 
-    return res.status(200).json({ token });
+    setCookie("jwt", token, { req, res, maxAge: 60 * 60 * 24 });
+
+    return res.status(200).json({
+      firstName: user.first_name,
+      lastName: user.last_name,
+      email: user.email,
+      phone: user.phone,
+      city: user.city,
+    });
   }
   return res.status(404).json({ message: "Unknown end point" });
 }

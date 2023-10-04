@@ -34,6 +34,7 @@ const useAuth = () => {
         data: response.data,
         error: null,
       });
+      handleClose();
     } catch (error) {
       if (error instanceof AxiosError) {
         setAuthState({
@@ -41,11 +42,60 @@ const useAuth = () => {
           data: null,
           error: error.response?.data.errorMessage,
         });
-        handleClose();
       }
     }
   };
-  const signUp = async () => {};
+  const signUp = async (
+    {
+      firstName,
+      lastName,
+      city,
+      email,
+      phone,
+      password,
+    }: {
+      firstName: string;
+      lastName: string;
+      city: string;
+      email: string;
+      phone: string;
+      password: string;
+    },
+    handleClose: () => void
+  ) => {
+    setAuthState({
+      data: null,
+      error: null,
+      loading: true,
+    });
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/auth/signup",
+        {
+          firstName,
+          lastName,
+          email,
+          password,
+          city,
+          phone,
+        }
+      );
+      setAuthState({
+        loading: false,
+        data: response.data,
+        error: null,
+      });
+      handleClose();
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        setAuthState({
+          loading: false,
+          data: null,
+          error: error.response?.data.errorMessage,
+        });
+      }
+    }
+  };
   return { signIn, signUp };
 };
 
