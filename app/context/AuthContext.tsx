@@ -1,3 +1,4 @@
+"use client";
 import { useState, createContext } from "react";
 
 interface AuthContextProps {
@@ -6,8 +7,8 @@ interface AuthContextProps {
 
 interface User {
   id: number;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   city: string;
   phone: string;
