@@ -198,7 +198,7 @@ export default async function handler(
         cuisine_id: indianCuisineId,
       },
       {
-        name: "Food Indian",
+        name: "Kamasutra Indian",
         main_image:
           "https://resizer.otstatic.com/v2/photos/xlarge/1/25602522.jpg",
         price: PRICE.CHEAP,
@@ -1305,22 +1305,22 @@ export default async function handler(
     ],
   });
 
-  //   await prisma.table.createMany({
-  //     data: [
-  //       {
-  //         restaurant_id: vivaanId,
-  //         seats: 4,
-  //       },
-  //       {
-  //         restaurant_id: vivaanId,
-  //         seats: 4,
-  //       },
-  //       {
-  //         restaurant_id: vivaanId,
-  //         seats: 2,
-  //       },
-  //     ],
-  //   });
+  await prisma.table.createMany({
+    data: [
+      {
+        restaurant_id: vivaanId,
+        seats: 4,
+      },
+      {
+        restaurant_id: vivaanId,
+        seats: 4,
+      },
+      {
+        restaurant_id: vivaanId,
+        seats: 2,
+      },
+    ],
+  });
 
   res.status(200).json({ name: "hello" });
 }
