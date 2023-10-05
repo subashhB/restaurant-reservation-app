@@ -1,5 +1,7 @@
 "use client";
 
+import { partySize } from "../../../../data";
+
 const ReservationCard = () => {
   return (
     <div className="fixed w-[20%] bg-white rounded p-3 shadow ">
@@ -9,12 +11,11 @@ const ReservationCard = () => {
       <div className="my-3 flex flex-col bg-white">
         <label htmlFor="">Party Size</label>
         <select name="" className="py-3 border-b font-light bg-white  ">
-          <option value="" className="bg-white">
-            1 person
-          </option>
-          <option value="" className="bg-white">
-            2 people
-          </option>
+          {partySize.map((size) => (
+            <option key={size.value} value={size.value}>
+              {size.label}
+            </option>
+          ))}
         </select>
       </div>
       <div className="flex justify-between">
