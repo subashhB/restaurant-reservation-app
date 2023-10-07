@@ -102,7 +102,5 @@ export default async function handler(
     };
   });
 
-  return res.json({
-    availability,
-  });
+  return res.json(availability);
 }

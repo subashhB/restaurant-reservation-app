@@ -4,6 +4,8 @@ import { useState } from "react";
 import ReactDatePicker from "react-datepicker";
 import { partySize as partySizes, times } from "../../../../data";
 import useAvailability from "../../../../hooks/useAvailabilty";
+import { CircularProgress } from "@mui/material";
+import Link from "next/link";
 
 interface ReservationCardProps {
   openTime: string;
@@ -21,6 +23,8 @@ const ReservationCard = ({
   const [time, setTime] = useState(openTime);
   const [partySize, setPartySize] = useState("2");
   const [day, setDay] = useState(new Date().toISOString().split("T")[0]);
+
+  console.log(data);
 
   const filterTimeByRestaurantOpenWindow = () => {
     const timesWithinWindow: typeof times = [];
@@ -58,7 +62,7 @@ const ReservationCard = ({
   };
 
   return (
-    <div className="fixed w-[20%] bg-white rounded p-3 shadow ">
+    <div className="fixed w-[20%] bg-white rounded p-3 shadow mb-10">
       <div className="text-center border-b pb-2 font-bold">
         <h4 className="mr-7 text-lg">Make a Reservation</h4>
       </div>
@@ -109,10 +113,30 @@ const ReservationCard = ({
         <button
           className="bg-red-600 rounded w-full px-4 text-white font-bold h-16"
           onClick={handleClick}
+          disabled={loading}
         >
-          Find a Time
+          {loading ? <CircularProgress color="inherit" /> : "Find a Time"}
         </button>
       </div>
+      {data && data.length ? (
+        <div className="mt-4">
+          <p className="text-reg">Select a Time</p>
+          <div className="flex flex-wrap mt-2">
+            {data.map((time) => {
+              return time.available ? (
+                <Link
+                  href={`/reserve/${slug}?date=${day}T${time}&partySize=${partySize}`}
+                  className="bg-red-600 cursor-pointer p-2 w-24 text-center text-white mb-3 rounded mr-3"
+                >
+                  <p className="text-sm font-bold">{time.time}</p>
+                </Link>
+              ) : (
+                <p className="bg-gray-300 p-2 w-24 mb-3 rounded mr-3"></p>
+              );
+            })}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 };
