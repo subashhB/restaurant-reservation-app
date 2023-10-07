@@ -44,10 +44,10 @@ export default async function handler(
     },
   });
 
-  const bookingsTableObj: { [key: string]: { [key: number]: true } } = {};
+  const bookingsTablesObj: { [key: string]: { [key: number]: true } } = {};
 
   bookings.forEach((booking) => {
-    bookingsTableObj[booking.booking_time.toISOString()] =
+    bookingsTablesObj[booking.booking_time.toISOString()] =
       booking.tables.reduce((obj, table) => {
         return {
           ...obj,
@@ -75,16 +75,25 @@ export default async function handler(
 
   const searchTimesWithTables = searchTimes.map((searchTime) => {
     return {
-      date: new Date(`${day}T${searchTimes}`),
+      date: new Date(`${day}T${searchTime}`),
       time: searchTime,
       tables,
     };
   });
 
+  searchTimesWithTables.forEach((t) => {
+    t.tables = t.tables.filter((table) => {
+      if (bookingsTablesObj[t.date.toISOString()]) {
+        if (bookingsTablesObj[t.date.toISOString()][table.id]) return false;
+      }
+      return true;
+    });
+  });
+
   return res.json({
     searchTimes,
     bookings,
-    bookingsTableObj,
+    bookingsTablesObj,
     tables,
     searchTimesWithTables,
   });
