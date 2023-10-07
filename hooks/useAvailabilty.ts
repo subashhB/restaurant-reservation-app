@@ -20,6 +20,7 @@ export default function useAvailability() {
     day,
     time,
   }: fetchAvailabilityParameters) => {
+    console.log(slug, partySize, day, time);
     setLoading(true);
     try {
       const response = await axios.get(
