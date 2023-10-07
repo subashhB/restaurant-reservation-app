@@ -1,3 +1,4 @@
+import { partySize } from "./../../../../data/partySize";
 import { NextApiRequest, NextApiResponse } from "next";
 import { times } from "../../../../data";
 import { PrismaClient } from "@prisma/client";
@@ -90,11 +91,18 @@ export default async function handler(
     });
   });
 
+  const availability = searchTimesWithTables.map((t) => {
+    const sumSeats = t.tables.reduce((sum, table) => {
+      return sum + table.seats;
+    }, 0);
+
+    return {
+      time: t.time,
+      available: sumSeats >= parseInt(partySize),
+    };
+  });
+
   return res.json({
-    searchTimes,
-    bookings,
-    bookingsTablesObj,
-    tables,
-    searchTimesWithTables,
+    availability,
   });
 }
