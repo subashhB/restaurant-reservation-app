@@ -1,6 +1,7 @@
 "use client";
 
 import { ChangeEvent, useEffect, useState } from "react";
+import useReservation from "../../../../hooks/useReservation";
 
 const Form = () => {
   const [inputs, setInputs] = useState({
@@ -12,6 +13,7 @@ const Form = () => {
     bookerRequest: "",
   });
   const [disabled, setDisabled] = useState(false);
+  const { error, loading, createReservation } = useReservation();
 
   useEffect(() => {
     if (
