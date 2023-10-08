@@ -1,9 +1,18 @@
+import {
+  Time,
+  convertToDisplayTime,
+} from "../../../../utils/convertToDisplayTime";
+import { format } from "date-fns";
+
 interface HeaderProps {
   image: string;
   name: string;
+  date: string;
+  partySize: string;
 }
 
-const Header = ({ image, name }: HeaderProps) => {
+const Header = ({ image, name, date, partySize }: HeaderProps) => {
+  const [day, time] = date.split("T");
   return (
     <div>
       <h3 className="font-bold">You&apos;re almost done!</h3>
@@ -12,9 +21,11 @@ const Header = ({ image, name }: HeaderProps) => {
         <div className="ml-4">
           <h1 className="font-bold text-3xl">{name}</h1>
           <div className="flex mt-3">
-            <p className="mr-6">Tue, 22, 2023</p>
-            <p className="mr-6">7:30 pm</p>
-            <p className="mr-6">3 people</p>
+            <p className="mr-6">{format(new Date(date), "ccc, LLL, d")}</p>
+            <p className="mr-6">{convertToDisplayTime(time as Time)}</p>
+            <p className="mr-6">
+              {partySize} {parseInt(partySize) > 1 ? "people" : "person"}
+            </p>
           </div>
         </div>
       </div>

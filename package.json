@@ -23,6 +23,7 @@
     "axios": "^1.5.1",
     "bcrypt": "^5.1.1",
     "cookies-next": "^4.0.0",
+    "date-fns": "^2.30.0",
     "eslint": "8.49.0",
     "eslint-config-next": "13.5.2",
     "jose": "^4.15.1",
