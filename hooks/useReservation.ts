@@ -1,7 +1,7 @@
 import { partySize } from "./../data/partySize";
 
 import axios, { AxiosError } from "axios";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 interface createReservationProps {
   slug: string;
@@ -14,6 +14,7 @@ interface createReservationProps {
   bookerPhone: string;
   bookerOccasion: string;
   bookerRequest: string;
+  setDidBook: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function useReservation() {
@@ -31,6 +32,7 @@ export default function useReservation() {
     bookerPhone,
     bookerOccasion,
     bookerRequest,
+    setDidBook,
   }: createReservationProps) => {
     console.log(slug, partySize, day, time);
     setLoading(true);
@@ -54,6 +56,7 @@ export default function useReservation() {
         }
       );
       setLoading(false);
+      setDidBook(true);
       return response.data;
     } catch (error) {
       setLoading(false);

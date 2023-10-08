@@ -36,7 +36,11 @@ const Reservation = async ({
           date={searchParams.date}
           partySize={searchParams.partySize}
         />
-        <Form />
+        <Form
+          partySize={searchParams.partySize}
+          slug={params.slug}
+          date={searchParams.date}
+        />
       </div>
     </div>
   );
